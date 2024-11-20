@@ -15,6 +15,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyTestApplicationTheme {
                 TaskScreen(viewModel)
+
             }
         }
     }

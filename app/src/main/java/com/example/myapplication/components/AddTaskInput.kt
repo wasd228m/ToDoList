@@ -8,32 +8,31 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.unit.dp
 import com.example.myapplication.view_models.TaskViewModel
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun AddTaskInput(viewModel: TaskViewModel) {
-    // focusManager allows us to clear the focus programmatically
+    // Focus manager allows us to clear the focus programmatically
     val focusManager = LocalFocusManager.current
-    // keyboardController enables us to close the keyboard programmatically
+    // Keyboard controller enables us to close the keyboard programmatically
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    // state for our new task body
-    var body by remember {
-        mutableStateOf("")
-    }
+    // State for our new task body
+    var body by remember { mutableStateOf("") }
 
-    // states for managing errors
+    // States for managing errors
     var error by remember { mutableStateOf("") }
     var isErrorVisible by remember { mutableStateOf(false) }
+
+    // Padding values
+    val MEDIUM_PADDING = 16.dp
+    val SMALL_PADDING = 8.dp
 
     Column(modifier = Modifier.padding(MEDIUM_PADDING, SMALL_PADDING)) {
         OutlinedTextField(
