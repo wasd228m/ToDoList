@@ -4,13 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.AlertDialogDefaults.containerColor
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 
@@ -20,44 +14,44 @@ fun TaskAppTopBar(
     deleteAllTasksDialog: MutableState<Boolean>,
     isInputVisible: MutableState<Boolean>,
 ) {
-    TopAppBar(title = {
-        Text(text = "My Task App")
-    },
+    TopAppBar(
+        title = {
+            Text(text = "My Task App")
+        },
         actions = {
-            // Add our new icon button to the actions
+            // Кнопка добавления/очистки
             IconButton(onClick = {
                 isInputVisible.value = !isInputVisible.value
             }) {
-                // If the input is visible, show the Clear icon
                 if (isInputVisible.value) {
                     Icon(
-                        Icons.Default.Clear,
+                        imageVector = Icons.Default.Clear,
                         contentDescription = "Clear Icon",
                         tint = MaterialTheme.colorScheme.error
                     )
-                    // If the input is NOT visible, show the Add icon
                 } else {
                     Icon(
-                        Icons.Default.Add,
+                        imageVector = Icons.Default.Add,
                         contentDescription = "Add Icon",
                         tint = MaterialTheme.colorScheme.onPrimary
                     )
                 }
             }
+            // Кнопка удаления всех задач
             IconButton(onClick = {
                 deleteAllTasksDialog.value = true
             }) {
                 Icon(
-                    Icons.Default.Delete,
+                    imageVector = Icons.Default.Delete,
                     contentDescription = "Delete Icon",
                     tint = MaterialTheme.colorScheme.onPrimary
                 )
             }
-        }
-
-                colors = TopAppBarDefaults . topAppBarColors (containerColor =
-            MaterialTheme.colorScheme.primary,
-        titleContentColor = MaterialTheme.colorScheme.onPrimary)
+        },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primary,
+            navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+            actionIconContentColor = MaterialTheme.colorScheme.onPrimary
         )
     )
 }

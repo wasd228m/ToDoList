@@ -2,6 +2,7 @@ package com.example.myapplication.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -13,6 +14,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.dp
+
+// Модель Task
+data class Task(
+    val id: Int,
+    val body: String,
+    val completed: Boolean
+)
+
+// Константы для отступов
+val SMALL_PADDING = 8.dp
+val MEDIUM_PADDING = 16.dp
 
 @Composable
 fun TaskCard(
@@ -20,12 +33,17 @@ fun TaskCard(
     toggleCompleted: (Task) -> Unit,
 ) {
     Card(
-        modifier = Modifier.padding(SMALL_PADDING).fillMaxWidth(), colors = CardDefaults.cardColors(
+        modifier = Modifier
+            .padding(SMALL_PADDING)
+            .fillMaxWidth(),
+        colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         )
     ) {
         Row(
-            modifier = Modifier.padding(SMALL_PADDING).fillMaxWidth(),
+            modifier = Modifier
+                .padding(SMALL_PADDING)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
